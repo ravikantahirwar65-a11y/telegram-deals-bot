@@ -1,5 +1,8 @@
 import os
 import re
+import asyncio
+from http.server import HTTPServer, BaseHTTPRequestHandler
+import threading
 from urllib.parse import quote
 from telethon import TelegramClient, events
 
@@ -11,6 +14,20 @@ BOT_TOKEN = os.environ.get("BOT_TOKEN")
 SOURCE_CHANNEL = "lootdealsk_Alibaba_dc_DealDost"
 TARGET_CHANNEL = "lootyahahai"
 EARNKARO_USER_ID = "5777285"
+
+# Dummy web server Render ko Live dikhane ke liye
+class SimpleServer(BaseHTTPRequestHandler):
+    def do_GET(self):
+        self.send_response(200)
+        self.end_headers()
+        self.wfile.write(b"Bot is Running Healthy!")
+
+def run_dummy_server():
+    port = int(os.environ.get("PORT", 8080))
+    server = HTTPServer(("0.0.0.0", port), SimpleServer)
+    server.serve_forever()
+
+threading.Thread(target=run_dummy_server, daemon=True).start()
 
 client = TelegramClient('deals_session', API_ID, API_HASH).start(bot_token=BOT_TOKEN)
 
