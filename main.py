@@ -11,7 +11,8 @@ API_ID = int(os.environ.get("API_ID"))
 API_HASH = os.environ.get("API_HASH")
 BOT_TOKEN = os.environ.get("BOT_TOKEN")
 
-SOURCE_CHANNEL = "lootdealsk_Alibaba_dc_DealDost"
+SOURCE_CHANNEL = "lootdealsk_Alibaba_dc_DealDost",
+"desidime"
 TARGET_CHANNEL = "lootyahahai"
 EARNKARO_USER_ID = "5777285"
 
